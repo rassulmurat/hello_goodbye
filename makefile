@@ -1,7 +1,7 @@
 CC = gcc
 
-default: clean main.o dinamic static
-	
+default: dinamic static main.o
+	$(CC) -o main *.o -L. lib_dinamic.so -Wl,-rpath,.
 main.o: 
 	$(CC) -c main.c
 hello.o: 
@@ -13,4 +13,4 @@ static: goodbye.o
 dinamic: hello.o
 	$(CC) -shared -o lib_dinamic.so hello.o
 clean:	
-	rm *.o *.so
+	rm -f *.o *.so main
